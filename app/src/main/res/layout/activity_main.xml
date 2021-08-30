@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </LinearLayout>
+
+    <com.baidu.mapapi.map.MapView
+        android:id="@+id/bmapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true" >
+    </com.baidu.mapapi.map.MapView>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <!-- Button的布局参考 https://blog.csdn.net/zhouyingge1104/article/details/43971597 -->
+        <Button
+            android:id="@+id/btMapNormal"
+            android:layout_width="100dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="普通"
+            android:textSize="12sp"/>
+        <Button
+            android:id="@+id/btStateLlite"
+            android:layout_width="100dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="卫星"
+            android:textSize="12sp"/>
+        <Button
+            android:id="@+id/btNone"
+            android:layout_width="100dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="空白"
+            android:textSize="12sp"
+           />
+        <CheckBox
+            android:id="@+id/baiduHeatMap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="false"
+            android:onClick="setBaiduHeatMap"
+            android:text="热力图" />
+        <CheckBox
+            android:id="@+id/traffice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="false"
+            android:onClick="setTraffic"
+            android:text="路况图" />
+
+<!--        <CheckBox-->
+<!--            android:id="@+id/set3D"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:checked="false"-->
+<!--            android:onClick="set3D"-->
+<!--            android:text="3D" />-->
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="68dp">
+
+        <androidx.drawerlayout.widget.DrawerLayout
+            android:id="@+id/drawerLayout"
+            android:layout_width="198dp"
+            android:layout_height="150dp"
+            android:clickable="true"
+            tools:context=".MainActivity">
+
+            <!-- 内容区 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btn_open_left"
+                    android:layout_width="190dp"
+                    android:layout_height="40dp"
+                    android:background="#e0000000"
+                    android:onClick="open"
+                    android:text="右滑打开绘制地图菜单" />
+
+            </LinearLayout>
+
+            <!-- 左边菜单 -->
+            <com.google.android.material.navigation.NavigationView
+                android:id="@+id/navigation_view"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:clickable="true"
+                app:menu="@layout/menu_drawer_left" />
+
+        </androidx.drawerlayout.widget.DrawerLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="220dp">
+
+        <CheckBox
+            android:id="@+id/batchAdd"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_weight="0"
+            android:checked="false"
+            android:onClick="batchAdd"
+            android:text="批量添加overlay" />
+
+        <CheckBox
+            android:id="@+id/batchDelete"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_weight="0"
+            android:checked="false"
+            android:onClick="batchDelete"
+            android:text="批量删除overlay" />
+        <CheckBox
+            android:id="@+id/groundOvelay"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_weight="0"
+            android:checked="false"
+            android:onClick="groundOvelay"
+            android:text="图片覆盖物overlay" />
+
+        <Button
+            android:id="@+id/citySearch"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_weight="0"
+            android:background="#00000000"
+            android:onClick="citySearch"
+            android:text="城市内检索超市"
+            android:textColor="#ffff0000"
+            android:textSize="15sp" />
+        <Button
+            android:id="@+id/zhoubianSearch"
+            android:layout_width="140dp"
+            android:layout_height="40dp"
+            android:layout_weight="0"
+            android:layout_marginTop="1dp"
+            android:onClick="nearSearch"
+            android:text="周边检索药店"
+            android:background="#00000000"
+            android:textColor="#ffff0000"
+            android:textSize="15sp" />
+        <Button
+            android:id="@+id/quyuSearch"
+            android:layout_width="140dp"
+            android:layout_height="40dp"
+            android:layout_weight="0"
+            android:layout_marginTop="1dp"
+            android:onClick="squareSearch"
+            android:background="#00000000"
+            android:textColor="#ffff0000"
+            android:text="区域检索美食"
+            android:textSize="15sp" />
+        <Button
+            android:id="@+id/locationToCoor"
+            android:layout_width="125dp"
+            android:layout_height="40dp"
+            android:layout_weight="0"
+            android:layout_marginTop="1dp"
+            android:onClick="locationToCoor"
+            android:background="#00000000"
+            android:textColor="@color/purple_700"
+            android:text="地址转坐标"
+            android:textSize="15sp" />
+        <Button
+            android:id="@+id/coorToLocation"
+            android:layout_width="125dp"
+            android:layout_height="40dp"
+            android:layout_weight="0"
+            android:layout_marginTop="1dp"
+            android:onClick="coorToLocation"
+            android:text="坐标转地址"
+            android:background="#00000000"
+            android:textColor="@color/purple_700"
+            android:textSize="15sp" />
+        <Button
+            android:id="@+id/walkRoutePlan"
+            android:layout_width="130dp"
+            android:layout_height="40dp"
+            android:layout_weight="0"
+            android:layout_marginTop="1dp"
+            android:onClick="walkRoutePlan"
+            android:text="步行路径规划"
+            android:background="#00000000"
+            android:textColor="@color/purple_700"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/carRoutePlan"
+            android:layout_width="130dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="1dp"
+            android:layout_weight="0"
+            android:background="#00000000"
+            android:onClick="carRoutePlan"
+            android:text="骑行路径规划"
+            android:textColor="@color/purple_700"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
